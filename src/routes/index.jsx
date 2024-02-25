@@ -10,7 +10,7 @@ export const routes = [
     element: <Dashboard />,
   },
   {
-    path: "/erply-cost-of-goods-report/dashboard",
+    path: "/erply-cogs-report/dashboard",
     element: <Dashboard />,
   },
   {
