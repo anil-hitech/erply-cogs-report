@@ -16,7 +16,7 @@ const columns = [
   // },
   {
     dataField: "name",
-    caption: "Location",
+    caption: "Locations",
     width: "auto",
     alignment: "left",
   },
