@@ -1,0 +1,38 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* .salesTable {
+  max-height: 500px;
+} */
+.dx-datagrid-headers.dx-datagrid-nowrap {
+  position: sticky;
+  top: 66px;
+  z-index: 120;
+  background-color: white;
+}
+
+@media screen and (max-width: 1566px) {
+  .dx-datagrid-headers.dx-datagrid-nowrap {
+    top: 117px;
+  }
+}
+@media screen and (max-width: 974px) {
+  .dx-datagrid-headers.dx-datagrid-nowrap {
+    top: 172px;
+  }
+}
+
+@media print {
+  .print-agreement {
+    height: 100vh;
+    width: 150vw;
+    margin-top: 100px;
+  }
+}
