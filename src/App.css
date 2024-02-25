@@ -8,31 +8,31 @@ a {
   text-decoration: none;
 }
 
-/* .salesTable {
-  max-height: 500px;
-} */
+.dx-datagrid .dx-row > td {
+  padding: 4px !important;
+}
+
 .dx-datagrid-headers.dx-datagrid-nowrap {
   position: sticky;
-  top: 66px;
+  top: calc(var(--appDrawerHeight) + 2px);
   z-index: 120;
   background-color: white;
 }
 
-@media screen and (max-width: 1566px) {
-  .dx-datagrid-headers.dx-datagrid-nowrap {
-    top: 117px;
-  }
-}
-@media screen and (max-width: 974px) {
-  .dx-datagrid-headers.dx-datagrid-nowrap {
-    top: 172px;
-  }
-}
-
 @media print {
   .print-agreement {
-    height: 100vh;
-    width: 150vw;
+    height: 100%;
+    width: 100%;
     margin-top: 100px;
+  }
+
+  .cogsTable {
+    width: 100%;
+  }
+
+  @page {
+    size: 400mm 400mm;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

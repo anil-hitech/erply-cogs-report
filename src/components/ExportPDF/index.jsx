@@ -55,9 +55,9 @@ const ExportPDF = () => {
         PDF
       </Button> */}
       <ReactToPrint
-        bodyClass="print-agreement"
+        bodyClass="print-agreement cogsTable"
         content={() => chartRef.current}
-        documentTitle="chart_erply"
+        documentTitle={`cost_of_goods_${new Date().getTime()}`}
         trigger={() => (
           <Button
             variant="outlined"

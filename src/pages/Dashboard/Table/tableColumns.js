@@ -9,10 +9,7 @@ const columns = [
   //   caption: "SN",
   //   width: "auto",
   //   alignment: "left",
-  //   // calculateCellValue: (data) => {
-  //   //   console.log(data.rowIndex);
-  //   // },
-  //   cellTemplate: (props) => props.rowIndex,
+  //   calculateCellValue: (rowData, rowIndex) => console.log(rowIndex),
   // },
   {
     dataField: "name",

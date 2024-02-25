@@ -61,7 +61,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function AppDrawer() {
   const [open, setOpen] = React.useState(true);
-  const [appBarHeight, setAppBarHeight] = React.useState(0);
+
   const appBarRef = React.useRef(null);
 
   const {
@@ -73,7 +73,11 @@ export default function AppDrawer() {
   };
 
   React.useLayoutEffect(() => {
-    const handleResize = () => setAppBarHeight(appBarRef.current.clientHeight);
+    const handleResize = () =>
+      document.documentElement.style.setProperty(
+        "--appDrawerHeight",
+        appBarRef.current.clientHeight + "px"
+      );
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -131,7 +135,7 @@ export default function AppDrawer() {
       <Main open={open} sx={{ padding: 0, margin: "20px" }}>
         <DrawerHeader
           sx={{
-            height: appBarHeight,
+            height: "var(--appDrawerHeight)",
           }}
         />
         <Outlet />

@@ -4,13 +4,18 @@ import "devextreme/dist/css/dx.light.css";
 import {
   FilterRow,
   Scrolling,
+  Selection,
   Summary,
   TotalItem,
 } from "devextreme-react/data-grid";
+import ExcelJS from "exceljs";
+import { exportDataGrid } from "devextreme/excel_exporter";
+import saveAs from "file-saver";
 
 import { priceFormatter } from "./helpers";
 // import { data } from "../data";
 import { useAppContext } from "../../../context/AppContext";
+import { useRef } from "react";
 
 //used to define the columns with currancy format so as to display in summary
 const columnsWithCurrency = [
@@ -24,6 +29,7 @@ const columnsWithCurrency = [
 ];
 
 const Table = () => {
+  const dataGridRef = useRef();
   const {
     data: { salesData },
   } = useAppContext();
@@ -34,14 +40,50 @@ const Table = () => {
     (col) => !excludedColumns.includes(col.dataField) //removing unnecessary columns for lineItem type
   );
 
+  const exportGridData = () => {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Cost_of_Goods");
+
+    exportDataGrid({
+      component: dataGridRef.current.instance,
+      worksheet: worksheet,
+      autoFilterEnabled: true,
+    }).then(() => {
+      workbook.xlsx.writeBuffer().then((buffer) => {
+        saveAs(
+          new Blob([buffer], { type: "application/octet-stream" }),
+          `Cost_of_goods_${new Date().getTime()}.xlsx`
+        );
+      });
+    });
+  };
+
+  // const customizeColumns = (columns) => {
+  //   // Add a new column for serial numbers
+  //   const serialNumberColumn = {
+  //     caption: "SN",
+  //     calculateCellValue: (rowData, rowIndex) => console.log(rowIndex),
+  //     width: 50, // Adjust width as needed
+  //   };
+
+  //   // Insert the new column as the first column
+  //   columns.unshift(serialNumberColumn);
+
+  //   return columns;
+  // };
+
   return (
-    <div>
+    <div className="cogsTable">
       <DataGrid
+        ref={dataGridRef}
         width={"100%"}
         // height={"500px"}
-        className="salesTable"
+        // className="cogsTable"
+        export={{ enabled: true }}
+        onExporting={exportGridData}
         dataSource={salesData || []}
         showBorders={true}
+        // customizeColumns={customizeColumns}
         columns={columns}
         allowColumnResizing={true}
         rowAlternationEnabled={true}
@@ -52,6 +94,7 @@ const Table = () => {
         ))} */}
         <FilterRow visible={true} />
         <Scrolling />
+        <Selection mode="" />
 
         <Summary>
           {summaryRow.map((col, index) => (
