@@ -19,6 +19,7 @@ import { useAppContext } from "../../../context/AppContext";
 import { useRef } from "react";
 
 import ExportPDF from "../../../components/ExportPDF";
+import { Box } from "@mui/material";
 
 //used to define the columns with currancy format so as to display in summary
 const columnsWithCurrency = [
@@ -63,26 +64,34 @@ const Table = () => {
 
   return (
     <div className="cogsTable">
+      <Box
+        sx={{
+          position: "absolute",
+          top: "0px",
+          right: "50px",
+          zIndex: 200,
+        }}
+      >
+        <ExportPDF />
+      </Box>
       <DataGrid
-        // toolbar={{
-        //   visible: true,
-        //   disabled: false,
-        //   items: [
-        //     "exportButton",
-        //     // "searchPanel",
-        //     // {
-        //     //   // location: "before",
-        //     //   widget: "dxAutocomplete",
-        //     //   options: { icon: "refresh" },
-        //     // },
-        //   ],
-        // }}
+        toolbar={{
+          visible: true,
+          disabled: false,
+          items: [
+            "exportButton",
+            {
+              // location: "before",
+              widget: "dxMenu",
+              options: { icon: "refresh" },
+            },
+          ],
+        }}
         ref={dataGridRef}
         width={"100%"}
         // height={"500px"}
-        // className="cogsTable"
+        // className="cogsDatagrid"
         export={{ enabled: true }}
-        // searchPanel={{ visible: true }}
         onExporting={exportGridData}
         dataSource={salesData || []}
         showBorders={true}
@@ -91,8 +100,6 @@ const Table = () => {
         rowAlternationEnabled={true}
         paging={{ pageSize: 25 }}
       >
-        <ExportPDF />
-
         <FilterRow visible={true} />
         <Scrolling />
 

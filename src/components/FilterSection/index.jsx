@@ -15,7 +15,7 @@ import Select from "react-select";
 
 import { useAppContext } from "../../context/AppContext";
 import formatDate from "../../utilities/formatDate";
-import ExportPDF from "../ExportPDF";
+// import ExportPDF from "../ExportPDF";
 
 const FilterSection = () => {
   const {
@@ -232,7 +232,7 @@ const FilterSection = () => {
           Reset
         </Button>
 
-        <ExportPDF />
+        {/* <ExportPDF /> */}
       </Box>
     </Box>
   );

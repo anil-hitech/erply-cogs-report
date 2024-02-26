@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+.cogsTable {
+  position: relative;
+}
+
 .dx-datagrid .dx-row > td {
   padding: 4px !important;
 }
