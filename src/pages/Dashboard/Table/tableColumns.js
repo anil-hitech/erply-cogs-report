@@ -4,13 +4,14 @@ import { handleNullValue, priceFormatter } from "./helpers";
 // const nameColWidth = "20%";
 
 const columns = [
-  // {
-  //   dataField: "",
-  //   caption: "SN",
-  //   width: "auto",
-  //   alignment: "left",
-  //   calculateCellValue: (rowData, rowIndex) => console.log(rowIndex),
-  // },
+  {
+    dataField: "sn",
+    caption: "SN",
+    width: "40px",
+    alignment: "center",
+    cellTemplate: (cellElement, cellInfo) =>
+      (cellElement.innerHTML = cellInfo.rowIndex + 1),
+  },
   {
     dataField: "name",
     caption: "Locations",
@@ -19,14 +20,14 @@ const columns = [
   },
   {
     dataField: "soldQuantity",
-    caption: "Sold Quantity",
+    caption: "Sold Qty",
     width: "auto",
     alignment: "center",
     customizeText: ({ value }) => parseInt(value).toLocaleString(),
   },
   {
     dataField: "salesWithGst",
-    caption: "Sales total with GST",
+    caption: "Sales with GST",
     width: "auto",
     alignment: "center",
     customizeText: ({ value }) => priceFormatter(value),
@@ -64,7 +65,7 @@ const columns = [
   },
   {
     dataField: "stock",
-    caption: "Stock Quantity",
+    caption: "Stock Qty",
     width: "auto",
     alignment: "center",
     customizeText: ({ value }) => parseInt(value).toLocaleString(),

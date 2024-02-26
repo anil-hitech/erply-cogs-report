@@ -4,9 +4,10 @@ import "devextreme/dist/css/dx.light.css";
 import {
   FilterRow,
   Scrolling,
-  Selection,
   Summary,
   TotalItem,
+  // Toolbar,
+  // ToolbarItem,
 } from "devextreme-react/data-grid";
 import ExcelJS from "exceljs";
 import { exportDataGrid } from "devextreme/excel_exporter";
@@ -16,6 +17,8 @@ import { priceFormatter } from "./helpers";
 // import { data } from "../data";
 import { useAppContext } from "../../../context/AppContext";
 import { useRef } from "react";
+
+import ExportPDF from "../../../components/ExportPDF";
 
 //used to define the columns with currancy format so as to display in summary
 const columnsWithCurrency = [
@@ -58,43 +61,40 @@ const Table = () => {
     });
   };
 
-  // const customizeColumns = (columns) => {
-  //   // Add a new column for serial numbers
-  //   const serialNumberColumn = {
-  //     caption: "SN",
-  //     calculateCellValue: (rowData, rowIndex) => console.log(rowIndex),
-  //     width: 50, // Adjust width as needed
-  //   };
-
-  //   // Insert the new column as the first column
-  //   columns.unshift(serialNumberColumn);
-
-  //   return columns;
-  // };
-
   return (
     <div className="cogsTable">
       <DataGrid
+        // toolbar={{
+        //   visible: true,
+        //   disabled: false,
+        //   items: [
+        //     "exportButton",
+        //     // "searchPanel",
+        //     // {
+        //     //   // location: "before",
+        //     //   widget: "dxAutocomplete",
+        //     //   options: { icon: "refresh" },
+        //     // },
+        //   ],
+        // }}
         ref={dataGridRef}
         width={"100%"}
         // height={"500px"}
         // className="cogsTable"
         export={{ enabled: true }}
+        // searchPanel={{ visible: true }}
         onExporting={exportGridData}
         dataSource={salesData || []}
         showBorders={true}
-        // customizeColumns={customizeColumns}
         columns={columns}
         allowColumnResizing={true}
         rowAlternationEnabled={true}
         paging={{ pageSize: 25 }}
       >
-        {/* {columns.map((column, index) => (
-          <Column  key={index} {...column} />
-        ))} */}
+        <ExportPDF />
+
         <FilterRow visible={true} />
         <Scrolling />
-        <Selection mode="" />
 
         <Summary>
           {summaryRow.map((col, index) => (

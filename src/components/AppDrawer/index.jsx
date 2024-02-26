@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import FilterSection from "../FilterSection";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { useAppContext } from "../../context/AppContext";
 
 const drawerWidth = 240;
@@ -106,29 +106,37 @@ export default function AppDrawer() {
             <MenuIcon />
           </IconButton>
 
-          <Typography
-            sx={{
-              color: "black",
-              width: "250px",
-              fontSize: "larger",
-              fontWeight: "bold",
-              textDecoration: "underline",
-            }}
-            flexGrow={1}
+          <Stack
+            flexDirection={{ xs: "column", md: "row" }}
+            alignItems={{ xs: "center" }}
+            justifyContent={{ xs: "center", md: "space-between" }}
+            width={"100%"}
           >
-            Cost of Goods Report
-          </Typography>
-
-          {Number(clientCode) > 0 ? (
-            <FilterSection />
-          ) : (
             <Typography
-              sx={{ fontWeight: "bold", textAlign: "center", width: "100%" }}
-              color={"black"}
+              sx={{
+                color: "black",
+                width: "250px",
+                fontSize: "larger",
+                fontWeight: "bold",
+                textDecoration: "underline",
+                textAlign: "center",
+              }}
+              flexGrow={1}
             >
-              Client Code Not found
+              Cost of Goods Report
             </Typography>
-          )}
+
+            {Number(clientCode) > 0 ? (
+              <FilterSection />
+            ) : (
+              <Typography
+                sx={{ fontWeight: "bold", textAlign: "center", width: "100%" }}
+                color={"black"}
+              >
+                Client Code Not found
+              </Typography>
+            )}
+          </Stack>
         </Toolbar>
       </AppBar>
 
