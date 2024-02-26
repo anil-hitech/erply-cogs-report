@@ -21,7 +21,7 @@ const columns = [
   {
     dataField: "soldQuantity",
     caption: "Sold Qty",
-    width: "auto",
+    width: "75px",
     alignment: "center",
     customizeText: ({ value }) => parseInt(value).toLocaleString(),
   },

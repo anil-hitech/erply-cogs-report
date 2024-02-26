@@ -3,6 +3,7 @@ import tableColumns, { excludedColumns, summaryRow } from "./tableColumns";
 import "devextreme/dist/css/dx.light.css";
 import {
   FilterRow,
+  HeaderFilter,
   Scrolling,
   Summary,
   TotalItem,
@@ -80,11 +81,11 @@ const Table = () => {
           disabled: false,
           items: [
             "exportButton",
-            {
-              // location: "before",
-              widget: "dxMenu",
-              options: { icon: "refresh" },
-            },
+            // {
+            //   location: "before",
+            //   widget: "dxMenu",
+            //   options: { icon: "refresh" },
+            // },
           ],
         }}
         ref={dataGridRef}
@@ -102,6 +103,7 @@ const Table = () => {
       >
         <FilterRow visible={true} />
         <Scrolling />
+        <HeaderFilter allowSearch={true} visible={true} />
 
         <Summary>
           {summaryRow.map((col, index) => (
